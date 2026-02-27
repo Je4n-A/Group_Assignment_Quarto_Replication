@@ -1,0 +1,131 @@
+---
+title: "Group Assignment - Quarto Replication + Visualization"
+author: "The Boys"
+date: 2/26/2026
+format:
+  html:
+    embed-resources: true
+    theme: yeti
+    toc: true
+    toc-title: "Overview"
+    code-line-numbers: true
+  revealjs:
+    embed-resources: true
+    transition: zoom
+    toc: true
+    toc-title: "Overview"
+    scrollable: true
+---
+
+# Introduction
+
+This assignment is designed to introduce you to the basics of Quarto. You will learn how to create documents with headers, formatted text, lists, tables, and embed R code for data analysis. **Replicate this whole file literally and as closely as possible. However, you must change the author (group) name above, “YOUR GROUP NAME” to yours**.
+
+# Import YAML
+
+It is crucial to include `embed-resources: true` in the YAML header when you generate HTML files (and revealjs slides). For this document, `theme: yeti` and `code-line-numbers: true` was used.
+
+Check out `date:` and `date-format:` options to properly format the date.
+
+# Objectives
+
+-   Understand and apply Quarto markdown formatting
+-   Embed and execute R code within a Quarto document
+
+# Getting Started
+
+# Quarto
+
+When creating a Quarto document, it’s advisable to primarily work in the **Source view** rather than the **Visual view**.
+
+# Formatting
+
+**Bold** text
+
+*Italicize* text
+
+`Code` format with backticks
+
+# Lists
+
+# Bullet Lists
+
+-   Item 1
+-   Item 2
+
+# Numbered List
+
+1.  First item
+2.  Second item
+
+# Tables
+
+When creating tables, Visual mode is useful.
+
+| Column 1 | Column 2 |
+|----------|----------|
+| Row 1    | Data     |
+| Row 2    | Data     |
+
+# External Images
+
+# Insert gifs
+
+Include an animated image with a caption that showcases someone utterly amazed by Quarto. Note the picture is centered.
+
+The link address: https://media.giphy.com/media/lXu72d4iKwqek/giphy.gif
+
+::: {#fig-gif}
+![](https://media.giphy.com/media/lXu72d4iKwqek/giphy.gif){fig-align="center"}
+
+It blows my mind!!
+:::
+
+# Embedding R Code
+
+Quarto allows embedding R code blocks for dynamic analysis and reporting. For below code, make sure not to print warning messages with `#| warning: false`.
+
+For slides, including
+
+- `auto-stretch: false` and
+- `scrollable: true`
+
+in the YAML header will ensure that all content is presented without any compression or omission of images.
+
+```{r}
+#| warning: false
+#| message: false
+library(tidyquant)
+library(tidyverse)
+aapl_data <- tq_get("AAPL", from = "2020-01-01", to = "2020-12-31")
+
+# Plot candlestick chart
+aapl_data %>%
+  ggplot(aes(x = date, open = open, high = high, low = low, close = close)) +
+  geom_candlestick() +
+  theme_minimal() +
+  labs(title = "AAPL Candlestick Chart 2020", x = "Date", y = "Price (USD)")
+```
+
+# Omit R code
+
+Produce above chart without showing the code block and warning message, with `#| echo: false` and `#| warning: false`.
+
+```{r}
+#| echo: false
+#| warning: false
+library(tidyquant)
+library(tidyverse)
+aapl_data <- tq_get("AAPL", from = "2020-01-01", to = "2020-12-31")
+
+# Plot candlestick chart
+aapl_data %>%
+  ggplot(aes(x = date, open = open, high = high, low = low, close = close)) +
+  geom_candlestick() +
+  theme_minimal() +
+  labs(title = "AAPL Candlestick Chart 2020", x = "Date", y = "Price (USD)")
+```
+# Visualization
+
+**Q1.Replicate below graphic as closely as possible using following information.**
+
